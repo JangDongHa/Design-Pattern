@@ -9,6 +9,7 @@ public class WeatherData implements Subject {
     private float humidity;
     private float pressure;
 
+
     public WeatherData(){ // 처음 생성할 때 옵저버 리스트 메모리 생성
         observers = new ArrayList<>();
     }
