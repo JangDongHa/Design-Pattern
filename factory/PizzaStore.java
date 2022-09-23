@@ -1,29 +1,22 @@
 package factory;
 
-import java.util.HashMap;
-
 public abstract class PizzaStore {
-    HashMap<String, Pizza> type;
+    String type;
 
-    public PizzaStore(){
-
+    public PizzaStore(String type){
+        this.type = type;
     }
 
-    public Pizza orderPizza(String type){
-        Pizza pizza;
-
-        pizza = createPizza(type);
-        if (pizza == null)
-            throw new RuntimeException("피자명을 찾을 수 없습니다.");
+    public void prepare(){ // 상위 클래스에서 행동을 제어
+        Pizza pizza = getPizza(type);
 
         pizza.prepare();
+
         pizza.bake();
+        pizza.cook();
         pizza.cut();
         pizza.box();
-
-        return pizza;
     }
 
-
-    protected abstract Pizza createPizza(String type);
+    abstract Pizza getPizza(String type);
 }
